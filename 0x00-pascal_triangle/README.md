@@ -1,2 +1,1 @@
-# Interview prep project work
-* pascal's triangle with python
+# pascal's triangle with python
