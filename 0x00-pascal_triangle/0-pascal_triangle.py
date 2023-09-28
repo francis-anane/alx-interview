@@ -18,8 +18,8 @@ def pascal_triangle(n):
 
     triangle = [[1], [1, 1]]  # first two rows of triangle list
     idx = 1
-    
-    # loop n - 1 times to get triangle size 
+
+    # loop n - 1 times to get triangle size
     while len(triangle) < n:
         i = 0
         temp_list = [1]  # creates a new row to add computed elements
