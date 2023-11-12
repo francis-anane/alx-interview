@@ -78,4 +78,3 @@ const printCharacterNames = async () => {
 
 // Invoke the function to print character names
 printCharacterNames();
-
