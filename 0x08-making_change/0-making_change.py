@@ -15,7 +15,8 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Initialize an array to store the minimum number of coins needed for each value from 0 to total
+    # Initialize an array to store the minimum number of coins
+    # needed for each value from 0 to total
     dp = [float('inf')] * (total + 1)
 
     # Base case: 0 coins needed to make change for 0
