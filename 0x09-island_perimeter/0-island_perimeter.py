@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Island Perimeter"""
 
+
 def island_perimeter(grid):
     """Returns the perimeter of the island described in grid."""
     counter = 0
@@ -59,4 +60,3 @@ def island_perimeter(grid):
                         counter += 1
 
     return counter
-
