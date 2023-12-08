@@ -40,8 +40,7 @@ def isRoundWinner(n, x):
 
     Returns:
         str or None: The round winner (either "Maria" or "Ben")
-        or None if the round
-        is a tie.
+        or None if the round is a tie.
     """
     number_list = [i for i in range(1, n + 1)]
     players = ["Maria", "Ben"]
