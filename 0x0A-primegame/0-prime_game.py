@@ -1,66 +1,100 @@
 #!/usr/bin/python3
-"""Prime Game"""
+""" Prime game """
 
 
 def isWinner(x, nums):
-    """ finds the winner"""
-    winnerCounter = {'Maria': 0, 'Ben': 0}
+    """
+    Determines the winner of the Prime Game.
+
+    Args:
+        x (int): Number of rounds.
+        nums (list): List of integers representing the number of elements
+        in each round.
+
+    Returns:
+        str or None: The winner (either "Maria" or "Ben") or
+        None if it's a tie.
+    """
+    winner_counter = {"Maria": 0, "Ben": 0}
 
     for i in range(x):
-        roundWinner = isRoundWinner(nums[i], x)
-        if roundWinner is not None:
-            winnerCounter[roundWinner] += 1
+        round_winner = is_round_winner(nums[i], x)
+        if round_winner is not None:
+            winner_counter[round_winner] += 1
 
-    if winnerCounter['Maria'] > winnerCounter['Ben']:
-        return 'Maria'
-    elif winnerCounter['Ben'] > winnerCounter['Maria']:
-        return 'Ben'
+    if winner_counter["Maria"] > winner_counter["Ben"]:
+        return "Maria"
+    elif winner_counter["Ben"] > winner_counter["Maria"]:
+        return "Ben"
     else:
         return None
 
 
 def isRoundWinner(n, x):
-    '''find round winner'''
-    list = [i for i in range(1, n + 1)]
-    players = ['Maria', 'Ben']
+    """
+    Determines the winner of a single round.
+
+    Args:
+        n (int): The number of elements in the round.
+        x (int): Total number of rounds.
+
+    Returns:
+        str or None: The round winner (either "Maria" or "Ben")
+        or None if the round
+        is a tie.
+    """
+    number_list = [i for i in range(1, n + 1)]
+    players = ["Maria", "Ben"]
 
     for i in range(n):
-        # get current player
-        currentPlayer = players[i % 2]
-        selectedIdxs = []
+        # Get the current player
+        current_player = players[i % 2]
+        selected_indices = []
         prime = -1
-        for idx, num in enumerate(list):
-            # if already picked prime num then
-            # find if num is multipl of the prime num
+
+        for idx, num in enumerate(number_list):
+            # If already picked a prime num, then find if num is
+            # a multiple of the prime num
             if prime != -1:
                 if num % prime == 0:
-                    selectedIdxs.append(idx)
-            # else check is num is prime then pick it
+                    selected_indices.append(idx)
+            # Else check if num is prime, then pick it
             else:
-                if isPrime(num):
-                    selectedIdxs.append(idx)
+                if is_prime(num):
+                    selected_indices.append(idx)
                     prime = num
-        # if failed to pick then current player lost
+
+        # If failed to pick, then the current player lost
         if prime == -1:
-            if currentPlayer == players[0]:
+            if current_player == players[0]:
                 return players[1]
             else:
                 return players[0]
         else:
-            for idx, val in enumerate(selectedIdxs):
-                del list[val - idx]
+            for idx, val in enumerate(selected_indices):
+                del number_list[val - idx]
+
     return None
 
 
 def isPrime(n):
-    # 0, 1, even numbers greater than 2 are NOT PRIME
+    """
+    Checks if a number is prime.
+
+    Args:
+        n (int): The number to check.
+
+    Returns:
+        bool: True if the number is prime, False otherwise.
+    """
+    # 0, 1, and even numbers greater than 2 are NOT PRIME
     if n == 1 or n == 0 or (n % 2 == 0 and n > 2):
         return False
     else:
-        # Not prime if divisable by another number less
-        # or equal to the square root of itself.
-        # n**(1/2) returns square root of n
-        for i in range(3, int(n**(1/2))+1, 2):
+        # Not prime if divisible by another number less or equal to
+        # the square root of itself.
+        # n**(1/2) returns the square root of n
+        for i in range(3, int(n**(1/2)) + 1, 2):
             if n % i == 0:
-                return "Not prime"
+                return False
         return True
